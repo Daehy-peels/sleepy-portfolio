@@ -1,0 +1,8 @@
+/* frontend/src/index.css */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* No other custom CSS or imports should be above these three lines */
+/* Only add your own custom global styles BELOW these directives */

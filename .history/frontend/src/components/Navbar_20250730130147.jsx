@@ -1,0 +1,175 @@
+// frontend/src/components/Navbar.jsx
+
+import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import {
+  FaGithub,
+  FaLinkedin,
+  FaBars,
+  FaTimes,
+  FaTwitter,
+} from "react-icons/fa";
+import { MdLightMode, MdDarkMode } from "react-icons/md";
+
+const Navbar = ({ theme, toggleTheme }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+
+  const navLinks = [
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+    { name: "Projects", path: "/projects" },
+    { name: "Skills", path: "/skills" },
+    { name: "Contact", path: "/contact" },
+  ];
+
+  return (
+    <nav className="bg-gray-800 dark:bg-neutral-200 p-4 shadow-lg sticky top-0 z-50 transition-colors duration-500">
+      <div className="container mx-auto flex justify-between items-center">
+        {/* Logo/Name */}
+        <Link
+          to="/"
+          className="text-white text-2xl font-bold
+                     hover:text-blue-400 dark:hover:text-blue-300
+                     transition-colors duration-300 transform hover:scale-105"
+        >
+          YourName.dev
+        </Link>
+
+        {/* Desktop Nav Links */}
+        <div className="hidden md:flex items-center space-x-4">
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              to={link.path}
+              // --- Classes for Aesthetic Buttons (No Underlines) ---
+              className={`
+                group // Keep group for hover effects like lift
+                text-lg py-2 px-4 rounded-full relative inline-flex items-center justify-center // Aesthetic button shape and padding
+                transition-all duration-350 ease-in-out // Smooth transitions for all effects
+
+                // Text Color & Background based on Active/Inactive State
+                ${
+                  location.pathname === link.path // If current path matches link's path
+                    ? "text-white dark:text-neutral-900 font-bold bg-gray-700 dark:bg-neutral-300 shadow-md" // Active: bold text, distinct background, shadow
+                    : "text-gray-300 group-hover:text-white dark:text-neutral-700 dark:group-hover:text-neutral-900 group-hover:bg-gray-700 dark:group-hover:bg-neutral-300 group-hover:shadow-md group-hover:-translate-y-0.5" // Inactive: base colors, with group-hover effects (text, background, shadow, lift)
+                }
+                // ALL 'after:' pseudo-element classes for underlines have been removed.
+              `}
+            >
+              {link.name}
+            </Link>
+          ))}
+          {/* Social Icons Desktop (remains unchanged) */}
+          <div className="flex space-x-4 text-2xl">
+            <a
+              href="https://github.com/yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-300 hover:text-blue-400 dark:text-neutral-700 dark:hover:text-blue-500 transition-colors duration-300"
+            >
+              <FaGithub />
+            </a>
+            <a
+              href="https://linkedin.com/in/yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-300 hover:text-blue-400 dark:text-neutral-700 dark:hover:text-blue-500 transition-colors duration-300"
+            >
+              <FaLinkedin />
+            </a>
+            <a
+              href="https://twitter.com/yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-300 hover:text-blue-400 dark:text-neutral-700 dark:hover:text-blue-500 transition-colors duration-300"
+            >
+              <FaTwitter />
+            </a>
+          </div>
+          {/* Theme Toggle Button (remains unchanged) */}
+          <button
+            onClick={toggleTheme}
+            className="text-gray-300 hover:text-white dark:text-neutral-700 dark:hover:text-neutral-900 transition-colors duration-300 text-2xl focus:outline-none
+                       transition-transform duration-300 ease-in-out hover:rotate-180"
+          >
+            {theme === "dark" ? <MdDarkMode /> : <MdLightMode />}
+          </button>
+        </div>
+
+        {/* Mobile menu button and Theme Toggle (remains largely unchanged) */}
+        <div className="md:hidden flex items-center space-x-4">
+          <button
+            onClick={toggleTheme}
+            className="text-gray-300 hover:text-white dark:text-neutral-700 dark:hover:text-neutral-900 transition-colors duration-300 text-2xl focus:outline-none
+                       transition-transform duration-300 ease-in-out hover:rotate-180"
+          >
+            {theme === "dark" ? <MdDarkMode /> : <MdLightMode />}
+          </button>
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="text-white text-2xl focus:outline-none"
+          >
+            {isOpen ? <FaTimes /> : <FaBars />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Nav Links */}
+      {isOpen && (
+        <div className="md:hidden bg-gray-700 dark:bg-neutral-200 mt-2 rounded-md shadow-lg py-2 transition-all duration-300 ease-in-out">
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              to={link.path}
+              onClick={() => setIsOpen(false)}
+              // --- Classes for Mobile Buttons (No Underlines) ---
+              className={`group // Added group class for mobile links too
+                         block px-4 py-2 text-lg rounded-full // Basic mobile button styling
+                         transition-all duration-350 ease-in-out // Smooth transitions
+                         
+                         ${
+                           location.pathname === link.path // If current path matches link's path
+                             ? "text-white dark:text-neutral-900 font-bold bg-gray-600 dark:bg-neutral-400 shadow-md" // Active mobile link: bold text, distinct background, shadow
+                             : "text-gray-200 dark:text-neutral-800 group-hover:bg-gray-600 dark:group-hover:bg-neutral-400 group-hover:shadow-md" // Inactive mobile link: base colors, with group-hover background & shadow
+                         }
+                         // ALL 'after:' pseudo-element classes for underlines have been removed.
+              `}
+            >
+              {link.name}
+            </Link>
+          ))}
+          {/* Social icons in mobile menu (remains unchanged) */}
+          <div className="flex justify-center space-x-6 py-2 border-t border-gray-600 dark:border-neutral-400 mt-2">
+            <a
+              href="https://github.com/yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-200 dark:text-neutral-800 hover:text-blue-400 dark:hover:text-blue-500 transition-colors duration-300 text-2xl"
+            >
+              <FaGithub />
+            </a>
+            <a
+              href="https://linkedin.com/in/yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-200 dark:text-neutral-800 hover:text-blue-400 dark:hover:text-blue-500 transition-colors duration-300 text-2xl"
+            >
+              <FaLinkedin />
+            </a>
+            <a
+              href="https://twitter.com/yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-200 dark:text-neutral-800 hover:text-blue-400 dark:hover:text-blue-500 transition-colors duration-300 text-2xl"
+            >
+              <FaTwitter />
+            </a>
+          </div>
+        </div>
+      )}
+    </nav>
+  );
+};
+
+export default Navbar;

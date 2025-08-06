@@ -1,0 +1,57 @@
+// frontend/src/App.jsx
+
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Projects from "./pages/Projects";
+import Skills from "./pages/Skills";
+import Contact from "./pages/Contact";
+
+function App() {
+  const [theme, setTheme] = useState(() => {
+    const savedTheme = localStorage.getItem("theme");
+    // If there's a saved theme, use it. Otherwise, default to "dark".
+    return savedTheme ? savedTheme : "dark";
+  });
+
+  useEffect(() => {
+    const root = document.documentElement; // This gets the <html> element
+    if (theme === "dark") {
+      root.classList.add("dark");
+    } else {
+      root.classList.remove("dark");
+    }
+    // Save the current theme preference to localStorage
+    localStorage.setItem("theme", theme);
+  }, [theme]); // Rerun this effect whenever 'theme' state changes
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
+  };
+
+  return (
+    <Router>
+      {/* This main div controls the entire page background and text color based on theme */}
+      <div className="min-h-screen flex flex-col bg-neutral-950 text-white dark:bg-neutral-100 dark:text-neutral-900 transition-colors duration-500">
+        <Navbar theme={theme} toggleTheme={toggleTheme} />
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/skills" element={<Skills />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </main>
+        <Footer theme={theme} />
+      </div>
+    </Router>
+  );
+}
+
+export default App;

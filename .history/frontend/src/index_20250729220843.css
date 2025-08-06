@@ -1,0 +1,103 @@
+/* frontend/src/index.css */
+
+/* IMPORTANT: These three lines inject all of Tailwind's styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --------------------------------------------------------------
+   Your Custom CSS and Animations Go Below These @tailwind Directives
+   --------------------------------------------------------------
+*/
+
+/* Example animations you might have from your project */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+@keyframes blob {
+    0% {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+
+    25% {
+        border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
+    }
+
+    50% {
+        border-radius: 30% 60% 70% 40% / 50% 60% 30% 40%;
+    }
+
+    75% {
+        border-radius: 40% 70% 60% 30% / 60% 40% 30% 70%;
+    }
+
+    100% {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+}
+
+/* Example usage of custom animations as classes */
+.animate-fade-in {
+    animation: fade-in 1s ease-out forwards;
+}
+
+.animate-slide-up {
+    animation: slide-up 1s ease-out forwards 0.3s;
+    /* Example delay */
+}
+
+.animate-blink {
+    animation: blink 1s infinite;
+}
+
+/* Any other global styles or resets you might have */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
+}

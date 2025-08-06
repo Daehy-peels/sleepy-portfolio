@@ -1,0 +1,79 @@
+/* src/index.css or src/globals.css */
+
+/* frontend/src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.animated-gradient-bg {
+    background: linear-gradient();
+    background-size: 400% 400%;
+    animation: gradient-animation 15s ease infinite;
+}
+
+.dark .animated-gradient-bg {
+    background: linear-gradient(-45deg, #333333, #1a1a1a, #0a0a1a, #000000);
+    background-size: 400% 400%;
+    animation: gradient-animation 15s ease infinite;
+}
+
+/* Keep the @keyframes animated-gradient as is */
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.animate-background-gradient {
+    position: relative;
+    overflow: hidden;
+    background-size: 300% 300%;
+    animation: animated-gradient 10s ease infinite;
+
+    /* UPDATED: Light mode background colors for more distinction */
+    background-image: linear-gradient(-45deg, #f5f5f5, #e0e0e0, #c0c0c0, #f5f5f5);
+    /* More distinct light grays */
+}
+
+/* UPDATED: Subtle diagonal stripe pattern overlay for light mode with higher opacity */
+.animate-background-gradient::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: repeating-linear-gradient(45deg,
+            rgba(0, 0, 0, 0.08),
+            /* Increased opacity */
+            rgba(0, 0, 0, 0.08) 20px,
+            /* Increased opacity */
+            transparent 20px,
+            transparent 40px);
+    opacity: 0.8;
+    /* Increased overall opacity for the stripes */
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Dark mode specific background gradient (remains unchanged) */
+html.dark .animate-background-gradient {
+    background-image: linear-gradient(-45deg, #1f2937, #111827, #374151, #1f2937);
+}
+
+/* Dark mode specific stripe pattern overlay (remains unchanged) */
+html.dark .animate-background-gradient::before {
+    background-image: repeating-linear-gradient(45deg,
+            rgba(255, 255, 255, 0.05),
+            rgba(255, 255, 255, 0.05) 20px,
+            transparent 20px,
+            transparent 40px);
+}

@@ -1,0 +1,32 @@
+{
+  "name": "frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0", // Added lint options back
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "framer-motion": "^11.0.0", // Stable recent version
+    "react": "^18.2.0", // Stick to stable React 18 for now
+    "react-dom": "^18.2.0", // Stick to stable React 18 for now
+    "react-icons": "^5.0.0", // Stable recent version
+    "react-router-dom": "^6.22.0" // Stable recent version
+  },
+  "devDependencies": {
+    
+    "@vitejs/plugin-react": "^4.2.1", // Compatible with Vite 5 and React 18
+    "autoprefixer": "^10.4.17", // Latest stable for PostCSS 8
+    "eslint": "^8.56.0", // Compatible with React 18
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "globals": "^16.3.0", // Keep if needed for ESLint global rules
+    "postcss": "^8.4.35", // Latest stable PostCSS 8
+    "tailwindcss": "^3.4.1", // *** IMPORTANT: Revert to stable Tailwind CSS v3.4.x ***
+    "vite": "^5.1.0" // Stable Vite 5.x
+    // Remove "@tailwindcss/postcss" and "@tailwindcss/vite" as they are implicitly handled by "tailwindcss" and Vite itself.
+  }
+}
