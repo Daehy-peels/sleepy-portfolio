@@ -1,0 +1,36 @@
+<!-- sleepyhead-logo.svg -->
+<svg width="200" height="60" viewBox="0 0 500 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sleepyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00CFFF" />
+      <stop offset="100%" stop-color="#7F00FF" />
+    </linearGradient>
+  </defs>
+
+  <!-- Circuit Moon Symbol -->
+  <g transform="translate(20,20)">
+    <path d="M50,60 
+             A40,40 0 1,1 10,20 
+             M50,100 
+             L50,120 
+             M50,100 
+             L70,120 
+             M50,100 
+             L30,120" 
+          stroke="url(#sleepyGradient)" stroke-width="6" fill="none" stroke-linecap="round" />
+    
+    <!-- Circuit Dots -->
+    <circle cx="50" cy="120" r="4" fill="url(#sleepyGradient)" />
+    <circle cx="70" cy="120" r="4" fill="url(#sleepyGradient)" />
+    <circle cx="30" cy="120" r="4" fill="url(#sleepyGradient)" />
+
+    <!-- Z Z -->
+    <text x="65" y="10" fill="url(#sleepyGradient)" font-size="16" font-family="monospace" font-weight="bold">Z</text>
+    <text x="75" y="25" fill="url(#sleepyGradient)" font-size="16" font-family="monospace" font-weight="bold">Z</text>
+  </g>
+
+  <!-- SLEEPYHEAD Text -->
+  <text x="120" y="90" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="40" fill="url(#sleepyGradient)">
+    SLEEPYHEAD
+  </text>
+</svg>
