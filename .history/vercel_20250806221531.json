@@ -1,0 +1,13 @@
+// vercel.json
+{
+  "rewrites": [
+    {
+      "source": "/api/:match*",
+      "destination": "/backend/server.js"
+    },
+    {
+      "source": "/public/images/:match*",
+      "destination": "/backend/public/images/:match*"
+    }
+  ]
+}
