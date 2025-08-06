@@ -55,7 +55,7 @@ const Footer = () => {
             >
               &copy;
             </span>{" "}
-            {year} Sleepyhead. All rights reserved.
+            {year} Sleep. All rights reserved.
           </p>
 
           {/* The Easter Egg Message */}
