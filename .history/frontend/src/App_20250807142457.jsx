@@ -40,7 +40,7 @@ function App() {
 
   return (
     <div
-      className={`min-h-screen flex flex-col overflow-x-hidden ${
+      className={`min-h-screen flex flex-col ${
         theme === "dark" ? "bg-gray-900" : "bg-gray-100"
       } text-gray-900 dark:text-white transition-colors duration-500`}
     >
@@ -52,7 +52,7 @@ function App() {
         <Skills />
         <Contact />
       </main>
-      <ToastContainer position="bottom-right" />
+      <ToastContainer />
       <Footer />
     </div>
   );
