@@ -11,7 +11,9 @@ const Projects = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/projects");
+        // Use the environment variable here with a fallback for local development
+        const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+        const response = await fetch(`${API_URL}/api/projects`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -55,7 +57,7 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="min-h-screen flex flex-col items-center justify-center p-8 pt-24 md:pt-16 text-center overflow-x-hidden"
+      className="min-h-screen flex flex-col items-center justify-center p-8 pt-24 md:pt-16 text-center"
     >
       <motion.h2
         initial={{ opacity: 0, y: -50 }}
@@ -78,60 +80,53 @@ const Projects = () => {
             whileHover={{ scale: 1.03 }}
             className="group relative rounded-lg overflow-hidden border border-gray-300/50 dark:border-gray-700/50 bg-white/30 dark:bg-gray-900/30 backdrop-filter backdrop-blur-lg backdrop-saturate-150 shadow-lg transition-all duration-300"
           >
-            <div className="relative overflow-hidden rounded-xl group">
-              {/* Project Image */}
-              <img
-                src={project.imageUrl}
-                alt={project.title}
-                className="w-full h-auto object-cover"
-              />
-              {/* Log the image URL to the console */}
-              {console.log(
-                `Loading image for project: ${project.title}, URL: ${project.imageUrl}`
-              )}
-
-              {/* Project Details Overlay */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-white bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <h3 className="text-2xl font-bold font-montserrat mb-2">
-                  {project.title}
-                </h3>
-                <p className="text-sm md:text-base mb-4 italic font-raleway">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap justify-center gap-2 mb-4">
-                  {project.technologies.map((tech, index) => (
-                    <span
-                      key={index}
-                      className="px-3 py-1 bg-blue-600 dark:bg-blue-800 text-white text-xs rounded-full font-raleway font-semibold"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <div className="flex gap-4">
-                  {project.githubLink && (
-                    <a
-                      href={project.githubLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-3 rounded-full bg-gray-800/80 hover:bg-gray-700 transition-colors"
-                      aria-label={`View ${project.title} on GitHub`}
-                    >
-                      <FaGithub size={24} />
-                    </a>
-                  )}
-                  {project.liveDemoLink && (
-                    <a
-                      href={project.liveDemoLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-3 rounded-full bg-blue-600/80 hover:bg-blue-500 transition-colors"
-                      aria-label={`View live demo of ${project.title}`}
-                    >
-                      <FaLink size={24} />
-                    </a>
-                  )}
-                </div>
+            {/* Project Image */}
+            <img
+              src={project.imageUrl}
+              alt={project.title}
+              className="w-full h-auto object-cover"
+            />
+            {/* Project Details Below Image */}
+            <div className="p-6 text-left">
+              <h3 className="text-2xl font-bold font-montserrat mb-2 text-black dark:text-white">
+                {project.title}
+              </h3>
+              <p className="text-sm md:text-base mb-4 italic font-raleway text-gray-800 dark:text-gray-200">
+                {project.description}
+              </p>
+              <div className="flex flex-wrap justify-start gap-2 mb-4">
+                {project.technologies.map((tech, index) => (
+                  <span
+                    key={index}
+                    className="px-3 py-1 bg-blue-600 dark:bg-blue-800 text-white text-xs rounded-full font-raleway font-semibold"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+              <div className="flex gap-4">
+                {project.githubLink && (
+                  <a
+                    href={project.githubLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-full bg-gray-800/80 hover:bg-gray-700 transition-colors text-white"
+                    aria-label={`View ${project.title} on GitHub`}
+                  >
+                    <FaGithub size={24} />
+                  </a>
+                )}
+                {project.liveDemoLink && (
+                  <a
+                    href={project.liveDemoLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-full bg-blue-600/80 hover:bg-blue-500 transition-colors text-white"
+                    aria-label={`View live demo of ${project.title}`}
+                  >
+                    <FaLink size={24} />
+                  </a>
+                )}
               </div>
             </div>
           </motion.div>
